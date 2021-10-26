@@ -1,0 +1,14 @@
+% Ubah judul dan label berikut sesuai dengan yang diinginkan.
+\section{Pendahuluan}
+\label{sec:pendahuluan}
+
+% Ubah paragraf-paragraf pada bagian ini sesuai dengan yang diinginkan.
+
+Integritas dari File Digital merupakan salah satu aspek penting dari sekuriti sistem komputer. File adalah aspek penting dari sebuah OS karena digunakan untuk melakukan I/O serta interaksi user dengan OS \citep{stallings2008}. Pada \emph{UNIX-like OS} sendiri file adalah segalanya, dan segalanya adalah file, seperti yang dikatakan oleh perintis Kernel Linux, Linus Torvalds \cite{everythingisafile}. Maka dari itu, file ini penting sekali untuk dilindungi untuk menjaga integritas dan \emph{availability} dari \emph{service} yang dilakukan oleh file yang bersangkutan tersebut. Menjaga integritas file penting dilakukan masa kini karena banyaknya instruksi dan data pada komputer. Terdapat beberapa faktor yang dapat menyebabkan terjadinya modifikasi data yang tidak terduga maupun yang tidak \emph{authorized}. Sebuah data atau file dapat menjadi korup apabila terjadi malfungsi pada \emph{hardware} atau \emph{software}. Disk yang digunakan pada komputer bisa saja menjadi penyebab. Error pada disk merupakan sesuatu yang lumrah terjadi \citep{prabhakaran2005} dan biasanya \emph{software} penyimpanan tidak didesain untuk menangani error tersebut. Bahkan dengan kesalahan integritas kecil sekalipun, yang tidak dapat dideteksi oleh \emph{software} dengan tepat waktu, dapat membuat hilangnya data secara signifikan. 
+
+Terdapat beberapa cara atau metode untuk menjamin integritas dari sebuah file. \emph{Parity Bit} atau biasa juga disebut dengan \emph{Check Bit} adalah bentuk sederhana dari \emph{error detecting code}. Error detecting code ini biasa digunakan untuk melakukan transmisi digital data yang \emph{reliable} dengan menggunakan kanal komunikasi yang \emph{unreliable}. Semua bentuk error detection akan menambahkan beberapa data ekstra pada pesan, yang dapat digunakan oleh penerima untuk melakukan verifikasi dari konsitensi pada pesan tersebut. Parity bit akan memastikan bahwa jumlah total dari 1-bit pada sebuah string adalah ganjil atau genap \citep{rodger2015}.
+
+Pembahasan pada paper ini dimulai dengan presentasi mengenai penelitian lain (Bagian \ref{sec:paritybit}).
+Kemudian dilanjutkan dengan penjelasan mengenai arsitektur dari sistem yang dibuat (Bagian \ref{sec:checksum}).
+Berdasarkan hal tersebut, kami menunjukkan lorem ipsum (Bagian \ref{sec:loremipsum}).
+Terakhir, didapatkan kesimpulan dari penelitian yang telah dilakukan (Bagian \ref{sec:kesimpulan}).
