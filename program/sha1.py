@@ -8,7 +8,7 @@ original_sha1 = ('d1e67b8819b009ec6942033'
                 '0c0a5a1a873da8236c12ef969')
 
 with open(file_name) as file_to_check:
-    data = file_to_check.read()    
+    data = file_to_check.read().encode()
     sha1_returned = hashlib.sha1(data).hexdigest()
 
 if original_sha1 == sha1_returned:
