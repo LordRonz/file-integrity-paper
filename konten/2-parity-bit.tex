@@ -4,7 +4,7 @@
 
 % Ubah paragraf-paragraf pada bagian ini sesuai dengan yang diinginkan.
 
-Hasil tersebut kemudian menjadi persamaan. Pada ilmu Matematika, paritas merupakan sebuah properti dari sebuah \emph{integer} yang menentukan apabila \emph{integer} tersebut ganjil atau genap. Sebuah paritas dari bilangan bulat adalah genap apabila jika bilangan tersebut dapat dibagi dengan dua dan sisanya adalah nol. Sebaliknya jika sisanya satu maka paritasnya adalah ganjil.
+Pada ilmu Matematika, paritas merupakan sebuah properti dari sebuah \emph{integer} yang menentukan apabila \emph{integer} tersebut ganjil atau genap. Sebuah paritas dari bilangan bulat adalah genap apabila jika bilangan tersebut dapat dibagi dengan dua dan sisanya adalah nol. Sebaliknya jika sisanya satu maka paritasnya adalah ganjil.
 \emph{Parity Bit} atau biasa juga disebut dengan \emph{Check Bit} adalah bentuk sederhana dari \emph{error detecting code}. Error detecting code ini biasa digunakan untuk melakukan transmisi digital data yang \emph{reliable} dengan menggunakan kanal komunikasi yang \emph{unreliable}. Semua bentuk error detection akan menambahkan beberapa data ekstra pada pesan, yang dapat digunakan oleh penerima untuk melakukan verifikasi dari konsitensi pada pesan tersebut. \emph{Parity bit} akan memastikan bahwa jumlah total dari 1-bit pada sebuah string adalah ganjil atau genap \citep{rodger2015}.
 
 Terdapat dua varian dari bit paritas, paritas genap dan paritas ganjil. Pada kasus paritas genap, untuk setiap bit dari string yang diberikan, jumlah bit yang bernilai 1 akan dihitung. Apabila jumlahnya ganjil, maka nilai dari bit paritas akan diatur menjadi 1, yang membuat total bit 1 menjadi bernilai genap. Sebaliknya, jika jumlah dari bit 1 pada awalnya sudah genap, maka bit paritas akan diatur menjadi 0. Pada kasus paritas ganjil, prosedurnya akan berkebalikan. Untuk setiap bit dari string yang diberikan, jumlah bit yang bernilai 1 akan dihitung. Apabila jumlahnya genap, maka nilai dari bit paritas akan diatur menjadi 1, yang membuat total bit 1 menjadi bernilai ganjil. Sebaliknya, jika jumlah dari bit 1 pada awalnya sudah ganjil, maka bit paritas akan diatur menjadi 0.
@@ -46,6 +46,19 @@ Apabila sebuah string yang berisi bit-bit paritas ditransmisikan secara tidak be
   caption={Program perhitungan bit paritas genap.},
   label={lst:paritasgenap}
 ]{program/paritas_genap.py}
+
+\begin{lstlisting}[
+  language=Python,
+  caption={Program perhitungan bit paritas ganjil},
+  label={lst:paritasganjil}
+]
+def odd_parity(x):
+    parity = 1
+    while x:
+        parity ^= x & 1
+        x >>= 1
+    return parity
+\end{lstlisting}
 
 Potongan kode pada Listing \ref{lst:paritasgenap} diatas adalah contoh kode yang berfungsi menemukan bit paritas genap. Untuk bit paritas ganjil tinggal mengganti inisialisasi variabel parity menjadi 1. Inputnya adalah \emph{integer} yang bisa kita jadikan biner dulu, seperti \verb|0b10001|.
 
