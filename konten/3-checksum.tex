@@ -25,6 +25,14 @@ MD5 digest sudah digunakan secara luas pada dunia perangkat lunak untuk memberik
 
 MD5 akan memproses pesan yang memiliki panjang bervariasi menjadi output dengan panjang 128 bit. Pesan masukan dipecah menjadi block-block 512 bit, dan pada pesan dilakukan padding agar panjangnya dapat dibagi dengan 512. Cara paddingnya adalah: pertama, satu bit, 1 ditambah pada akhir pesan. Kemudian bit ini diikuti dengan nol sebanyak yang dibutuhkan untuk membuat panjang message kurang dari 64 bit dari kelipatan 512. Bit sisa yang panjangnya 64 bit diisi dengan 64 bit yang merepresentasikan panjang pesan mulanya, modulo 2.
 
+Algoritma inti dari MD5 bekerja pada keadaan 128-bit, dibagi menjadi 32-bit words, dinotasikan dengan \(A, B, C\), dan \(D\). Variabel tersebut diinisialisasi ke konstanta tertentu. Algoritma inti akan menggunakan tiap blok pesan berukuran 512-bit untuk memodifikasi statenya. Pemrosessan dari blok pesan terdiri dari 4 tahap, termed rounds; tiap tahap terdiri dari 16 operasi yang mirip berdasarkan fungsi linear \(F\), penjumlahan modular, dan rotasi ke kiri. Berikut persamaannya. Terdapat 4 fungsi yang mungkin terjadi, fungsi berbeda digunakan untuk tiap tahapan atau round.
+
+\label{eq:md5sum}
+\[ F(B,C,D) = (B \land C) \lor (\neg B \lor D) \]
+\[ G(B,C,D) = (B \land D) \lor (B \lor \neg D) \]
+\[ H(B,C,D) = B \oplus C \oplus D \]
+\[ I(B,C,D) = C \oplus (B \lor \neg D) \]
+
 % Contoh input potongan kode dari file.
 \lstinputlisting[
   language=Python,
@@ -49,25 +57,47 @@ Untuk hash function yang mana \(L\) adalah jumlah bit di message digest, menemuk
 
 Pada Listing \ref{lst:sha1sum} adalah contoh program python sederhana untuk melakukan checksum menggunakan algoritma SHA-1. Program tersebut menggunakan library bawaan bernama hashlib.
 
+\subsection{SHA-2}
+\label{subsec:SHA2}
+
+SHA-2 merupakan perubahan yang cukup signifikan dibandingkan pendahulunya, SHA-1. SHA-2 family terdiri atas enam buah hash function dengan digests (nilai hash) yang bernilai 2254, 256, 384 atau 512 bit: SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256. Hash function pada SHA-2 digunakan secara luas pada sejumlah aplikasi dan protokol sekuriti seperti TLS dan SSL, PGP, SSH, S/MIME dan IPsec. SHA-256 digunakan dalam proses autentikasi package software di OS Debian. SHA-256 dan SHA-512 direncanakan untuk digunakan pada DNSSEC \citep{rfc5702}.
+
+\subsection{SHA-3}
+\label{subsec:SHA3}
+
+SHA-3 merupakan member terbaru dari family Secure Hash Algorithm (SHA), yang dirilis oleh NIST pada tahun 2015. Meskipun masih satu family, SHA-3 secara internal berbeda dengan SHA-1 dan SHA-2 yang strukturnya seperti MD5. SHA-3 merupakan subset dari \emph{Keccak} \citep{nist2012}. 
+
+Keccak didasari dari pendekatan baru yang dinamakan sponge construction. Sponge construction didasari dari fungsi random atau fungsi permutasi, dan menerima (atau "menyerap", dalam istilah sponge) input data sebanyak apapun, kemudian mengoutput ("memeras") berapapun jumlah datanya, sambil bertindak sebagai \emph{pseudorandom function}. Pada state absorbing, blok pesan di-XOR menjadi subset dari state, yang kemudian ditransformasikan secara keseluruhan menggunakan fungsi permutasi \(f\). Pada state "squeeze", blok-blok output dibaca dari subset yang sama dari state, berselang-seling dengan fungsi transformasi state \(f\). Ukuran dari bagian pada state yang tertulis dan dibaca dinamakan "rate" (dinotasikan sebagai \(r\)), dan ukuran dari bagian yang tidak tersentuh oleh input/output dinamakan capacity (dinotasikan sebagai \(c\)). Kapasitas ini menentukan tingkat dari sekuritinya. Level maksimum dari sekuritinya adalah separuh dari kapasitasnya. Akgoritma dari \emph{Keccak} adalah sebagai berikut.
+
+Fungsi theta terdiri dari tiga persamaan yang melibatkan operasi XOR sederhana dan bitwise cyclic shift.
+
+
+
+\lstinputlisting[
+  language=Python,
+  caption={Program python sederhana untuk cek sha3sum 512 bit},
+  label={lst:sha3sum}
+]{program/sha3.py}
+
 \subsection{Lorem Ipsum}
 \label{subsec:loremipsum}
 
 \lipsum[11]
 
-% Contoh pembuatan tabel.
-\begin{table}
-  \caption{Contoh tabel sederhana}
-  \label{tab:tabelsederhana}
-  \centering
-  \begin{tabular}{lll}
-    \toprule
-    Heading1 & Heading2 & Heading3  \\
-    \midrule
-    One      & Two      & Three     \\
-    Four     & Five     & Six       \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+% % Contoh pembuatan tabel.
+% \begin{table}
+%   \caption{Contoh tabel sederhana}
+%   \label{tab:tabelsederhana}
+%   \centering
+%   \begin{tabular}{lll}
+%     \toprule
+%     Heading1 & Heading2 & Heading3  \\
+%     \midrule
+%     One      & Two      & Three     \\
+%     Four     & Five     & Six       \\
+%     \bottomrule
+%   \end{tabular}
+% \end{table}
 
 % Contoh pembuatan potongan kode.
 \begin{lstlisting}[
