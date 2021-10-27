@@ -1,0 +1,18 @@
+% Ubah judul dan label berikut sesuai dengan yang diinginkan.
+\section{Penelitian Terkait}
+\label{sec:penelitianterkait}
+
+% Ubah paragraf-paragraf pada bagian ini sesuai dengan yang diinginkan.
+Dari segi security, terdapat beberapa penelitian yang juga melibatkan perkara \emph{file integrity}. Beberapa diantaranya akan dibahas sekilas pada subbab berikut.
+
+\subsection{File Integrity Verification}
+\label{subsec:fileintegrityverification}
+
+Beberapa penelitian dengan metode survei online telah mempelajari tentang security dan usability dari fingerprint berbeda untuk autentikasi maupun verifikasi integritas. Hsiao et al, sudah membandingkan kecepatan dan akurasi dari hash verification dengan representasi visual dan textual yang berbeda \citep{hsiao2009}. Pada penelitiannya disebut bahwa user kesulitan dalam membandingkan fingerprint yang panjang.
+
+Penelitian dengan tema secure messaging juga memberikan kita penemuan yang relevan tentang usability dan security dari proses autentikasi pengguna layanan messaging tersebut. Unger et al, menekankan bahwa tingkat penggunaan dan usability yang terbatas dari verifikasi fingerprint secara manual \citep{unger2015}. Vaziripour et al, mengevaluasi usability dari proses autentikasi yang ada di tiga aplikasi messaging populer (WhatsApp, Viber, Facebook Messenger) melalui penelitian dua tahap yang melibatkan 36 pasang peserta \citep{vaziripour2017}. Peserta melaporkan bahwa string fingerprint terlalu panjang, dan beberapa pengguna WhatsApp senang dengan fitur scan QR code daripada harus membandingkan string yang panjang.
+
+\subsection{Otomatisasi Verifikasi Integritas}
+\label{subsec:otoverifintegritas}
+
+Kita dapat melakukan otomatisasi verifikasi checksum. Beberapa diantaranya sudah diaplikasikan. Pada package manager UNIX OS seperti brew (macOS) ataupun aptitude (Linux) telah diterapkan verifikasi checksum otomatis, yang mempermudah user untuk dapat langsung menginstall package tanpa perlu membandingkan checksum pada source dan yang diunduh secara manual karena pada package manager sudah otomatis melakukan hal tersebut. Akan tetapi, package manager seperti yang disebutkan sebelumnya biasanya hanya populer di UNIX system dan package manager biasanya digunakan untuk user yang sudah berpengalaman dengan terminal atau \emph{command line interface}. Perlu diperhatikan bahwa package manager juga tidak luput dari serangan \citep{cappos2008}.
