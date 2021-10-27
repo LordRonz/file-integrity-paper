@@ -8,7 +8,10 @@ Integritas dari File Digital merupakan salah satu aspek penting dari sekuriti si
 
 Terdapat beberapa cara atau metode untuk menjamin integritas dari sebuah file. \emph{Parity Bit} atau biasa juga disebut dengan \emph{Check Bit} adalah bentuk sederhana dari \emph{error detecting code}. Error detecting code ini biasa digunakan untuk melakukan transmisi digital data yang \emph{reliable} dengan menggunakan kanal komunikasi yang \emph{unreliable}. Semua bentuk error detection akan menambahkan beberapa data ekstra pada pesan, yang dapat digunakan oleh penerima untuk melakukan verifikasi dari konsitensi pada pesan tersebut. Parity bit akan memastikan bahwa jumlah total dari 1-bit pada sebuah string adalah ganjil atau genap \citep{rodger2015}.
 
-Pembahasan pada paper ini dimulai dengan presentasi mengenai penelitian lain (Bagian \ref{sec:paritybit}).
-Kemudian dilanjutkan dengan penjelasan mengenai arsitektur dari sistem yang dibuat (Bagian \ref{sec:checksum}).
-Berdasarkan hal tersebut, kami menunjukkan lorem ipsum (Bagian \ref{sec:crc}).
+Terdapat beberapa perbedaan pada tiap-tiap implementasi algoritma untuk melakukan pengecekan integritas file. Pada masing-masing algoritma juga memiliki kekurangan dan kelebihan masing-masing, sehingga pemakaiannya juga perlu disesuaikan dengan kebutuhan. Maka dari itu penting untuk mengetahui perihal apa saja dan bagaimana karakteristik dari masing-masing algoritma untuk melakukan pengecekan integritas file ini. Ada algoritma yang dulunya cukup reliable untuk dijadikan sebagai lapisan pengamanan. namun seiring dengan makin cepatnya komputer, sudah dikatakan tidak aman lagi. Hal ini bukan berarti algoritma tersebut sudah tidak digunakan. Untuk persoalan mengecek integritas data masih cukup bisa diandalkan selama modifikasi data yang dilakukan tidak disengaja. Untuk aspek security, diperlukan juga pemahaman seberapa kuat algoritma tersebut dapat bertahan dari serangan \emph{brute force}.
+
+Pembahasan pada paper ini dimulai dengan presentasi mengenai penelitian lain (Bagian \ref{sec:penelitianterkait}).
+Kemudian dilanjutkan dengan penjelasan mengenai hal-hal apa saja yang menarik dari parity bit (Bagian \ref{sec:paritybit}).
+Setelah itu dilanjutkan dengan pemahaman dari istilah checksum (Bagian \ref{sec:checksum}). Pada bagian tersebut juga diklasifikasikan menjadi beberapa sub bagian seperti MD5, SHA-1, SHA-2 dan SHA-3.
+Dengan didasari bagian-bagian sebelumnya, maka dilanjutkan dengan Cyclic Redundancy Check  (Bagian \ref{sec:crc})
 Terakhir, didapatkan kesimpulan dari penelitian yang telah dilakukan (Bagian \ref{sec:kesimpulan}).
