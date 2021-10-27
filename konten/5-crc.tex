@@ -18,7 +18,7 @@
 
 Sebuah \emph{Cyclic Redundancy Check} adalah \emph{error-detecting code} yang biasa digunakan pada jaringan digital dan storage untuk mendeteksi adanya perubahan yang tidak diinginkan pada data. Blok data yang memasuki sistem CRC akan diberikan \emph{check value}, berdasarkan sisa dari pembagian polinomial dari kontennya. Saat pengambilan data, kalkulasi tersebut diulang lagi dan apabila check value tidak sesuai maka dapat dilakukan koreksi untuk menghindari data yang korup. CRC dapat digunakan untuk \emph{error-correction} \citep{dobbs2003}. Varian CRC-1 dikenal juga sebagai parity bit (\ref{sec:paritybit}).
 
-Sejatinya, CRC merupakan tipe dari checksum, dan memiliki konsep yang mirip dengan checksum. Akan tetapi, terdapat perbedaan diantaranya sehingga saya memutuskan untuk memberikannya bab tersendiri. CRC merupakan checksum yang secara spesifik adalah \emph{position dependent checksum algorithm}. Dari namanya tersebut, CRC dapat mendeteksi perpindahan posisi, yang membuatnya menjadi integrity check yang umum digunakan. CRC juga populer dikarenakan kesederhanaannya dibandingkan algoritma checksum yang lainnya seperti MD5 dan SHA family. CRC juga lebih mudah untuk dianalisis secara matematis dan baik untuk mendeteksi error yang umum terjadi dikarenakan oleh noise pada transmission channel. CRC sendiri tidak didesain dengan tujuan kriptografik, karena CRC dapat direverse sehingga untuk alasan keamanan lebih dianjurkan untuk menggunakan SHA-2.
+Sejatinya, CRC merupakan tipe dari checksum, dan memiliki konsep yang mirip dengan checksum. Akan tetapi, terdapat perbedaan diantaranya sehingga saya memutuskan untuk memberikannya bab tersendiri. CRC merupakan checksum yang secara spesifik adalah \emph{position dependent checksum algorithm}. Dari namanya tersebut, CRC dapat mendeteksi perpindahan posisi, yang membuatnya menjadi integrity check yang umum digunakan. CRC juga populer dikarenakan kesederhanaannya dibandingkan algoritma checksum yang lainnya seperti MD5 dan SHA family. CRC juga lebih mudah untuk dianalisis secara matematis dan baik untuk mendeteksi error yang umum terjadi dikarenakan oleh noise pada transmission channel. CRC sendiri tidak didesain dengan tujuan kriptografik, karena CRC dapat direverse sehingga untuk alasan keamanan lebih dianjurkan untuk menggunakan SHA-2. CRC biasa digunakan dalam hal untuk menyalin atau memindahkan file serta kompres dan dekompres file.
 
 \subsection{Integritas Data}
 \label{subsec:crcdataintegrity}
@@ -82,4 +82,11 @@ True
   label={lst:crcwithc}
 ]{program/crc.c}
 
-Listing \ref{lst:crcwithc} merupakan algoritma CRC-32 \citep{microsoft2019} dalam bahasa C. Variable CRCTable adalah memoization dari kalkulasi yang harus diulang untuk setiap byte dari pesan.
+Listing \ref{lst:crcwithc} merupakan algoritma CRC-32 \citep{microsoft2019} dalam bahasa C. Variable \lstinline{CRCTable} adalah memoization dari kalkulasi yang harus diulang untuk setiap byte dari pesan.
+
+\subsection{Kompresi Data}
+\label{subsec:kompresidata}
+
+CRC digunakan untuk melakukan kalkulasi dari semua data yang ada di dalam file yang terkompresi. Nilai CRC akan dikalkulasi setiap kali ada file baru yang ditambahkan kedalam archive. Ketika archive atau file terkompresi di dekompresi, maka program akan mengkalkulasi nilai CRC kembali dan membandingkannya dengan yang ada di archive. Apabila terdapat perbedaan pada CRC value, maka biasanya akan ditampilkan pesan CRC error, yang mengindikasikan bahwa file yang terekstrak tidak sama dengan file yang awalnya dikompresi. Hal ini biasanya terjadi ketika file yang dikompresi didalam archive rusak. Hal ini juga dapat terjadi walaupun hanya satu file didalam archive yang korup.
+
+Nilai dari CRC itu sendiri tidak mengatakan bahwa file anda korup atau tidak. Maka, ketika kita mengecek metadata dari archive atau mengkompresi file dan menemukan nilai CRC-nya, bukan berarti archive kita telah rusak. Hal tersebut hanya menunjukkan nilai awal dari CRC file yang terkompresi. Kebanyakan software untuk melakukan kompresi seperti 7zip dan WinRAR sudah memiliki mekanisme ini \citep{7zip}.

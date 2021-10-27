@@ -68,7 +68,7 @@ Pada Listing \ref{lst:sha1sum} adalah contoh program python sederhana untuk mela
 \subsection{SHA-2}
 \label{subsec:SHA2}
 
-SHA-2 merupakan perubahan yang cukup signifikan dibandingkan pendahulunya, SHA-1. SHA-2 family terdiri atas enam buah hash function dengan digests (nilai hash) yang bernilai 2254, 256, 384 atau 512 bit: SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256. Hash function pada SHA-2 digunakan secara luas pada sejumlah aplikasi dan protokol sekuriti seperti TLS dan SSL, PGP, SSH, S/MIME dan IPsec. SHA-256 digunakan dalam proses autentikasi package software di OS Debian. SHA-256 dan SHA-512 direncanakan untuk digunakan pada DNSSEC \citep{rfc5702}.
+SHA-2 merupakan perubahan yang cukup signifikan dibandingkan pendahulunya, SHA-1. SHA-2 family terdiri atas enam buah hash function dengan digests (nilai hash) yang bernilai 2254, 256, 384 atau 512 bit: SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256. Hash function pada SHA-2 digunakan secara luas pada sejumlah aplikasi dan protokol sekuriti seperti TLS dan SSL, PGP, SSH, S/MIME dan IPsec. SHA-256 digunakan dalam proses autentikasi package software di OS Debian. SHA-256 dan SHA-512 direncanakan untuk digunakan pada DNSSEC \citep{rfc5702}. Makin besar nilai hashnya maka artinya semakin aman dan sulit untuk menemukan collision, tetapi membutuhkan beban komputasi yang lebih tinggi.
 
 \subsection{SHA-3}
 \label{subsec:SHA3}
@@ -127,10 +127,7 @@ Step Iota (\ref{eq:iota}) adalah step paling sederhana dari algoritma Keccak. St
   label={lst:sha3sum}
 ]{program/sha3.py}
 
-\subsection{Lorem Ipsum}
-\label{subsec:loremipsum}
-
-\lipsum[11]
+Program yang ada di listing \ref{lst:sha3sum} menunjukkan program python sederhana untuk melakukan pengecekan file integrity menggunakan algoritma SHA-3 512-bit.
 
 % % Contoh pembuatan tabel.
 % \begin{table}
@@ -149,11 +146,9 @@ Step Iota (\ref{eq:iota}) adalah step paling sederhana dari algoritma Keccak. St
 
 \lipsum[12]
 
-% Contoh pembuatan daftar.
-\begin{enumerate}
-  \item \lipsum[13][1-4]
-  \item \lipsum[13][5-8]
-  \item \lipsum[13][9-12]
-\end{enumerate}
-
-\lipsum[14-15]
+% % Contoh pembuatan daftar.
+% \begin{enumerate}
+%   \item \lipsum[13][1-4]
+%   \item \lipsum[13][5-8]
+%   \item \lipsum[13][9-12]
+% \end{enumerate}
