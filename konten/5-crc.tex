@@ -1,0 +1,51 @@
+% Ubah judul dan label berikut sesuai dengan yang diinginkan.
+\section{Cyclic Redundancy Check}
+\label{sec:crc}
+
+% Ubah paragraf-paragraf pada bagian ini sesuai dengan yang diinginkan.
+
+% Contoh input beberapa gambar pada halaman.
+\begin{figure*}
+  \centering
+  \subfloat[Hasil A]{\includegraphics[width=.4\textwidth]{example-image-a}
+    \label{fig:hasila}}
+  \hfil
+  \subfloat[Hasil B]{\includegraphics[width=.4\textwidth]{example-image-b}
+    \label{fig:hasilb}}
+  \caption{Contoh input beberapa gambar.}
+  \label{fig:hasil}
+\end{figure*}
+
+Sebuah \emph{Cyclic Redundancy Check} adalah \emph{error-detecting code} yang biasa digunakan pada jaringan digital dan storage untuk mendeteksi adanya perubahan yang tidak diinginkan pada data. Blok data yang memasuki sistem CRC akan diberikan \emph{check value}, berdasarkan sisa dari pembagian polinomial dari kontennya. Saat pengambilan data, kalkulasi tersebut diulang lagi dan apabila check value tidak sesuai maka dapat dilakukan koreksi untuk menghindari data yang korup. CRC dapat digunakan untuk \emph{error-correction} \citep{dobbs2003}.
+
+Sejatinya, CRC merupakan tipe dari checksum, dan memiliki konsep yang mirip dengan checksum. Akan tetapi, terdapat perbedaan diantaranya sehingga saya memutuskan untuk memberikannya bab tersendiri. CRC merupakan checksum yang secara spesifik adalah \emph{position dependent checksum algorithm}. Dari namanya tersebut, CRC dapat mendeteksi perpindahan posisi, yang membuatnya menjadi integrity check yang umum digunakan. CRC juga populer dikarenakan kesederhanaannya dibandingkan algoritma checksum yang lainnya seperti MD5 dan SHA family. CRC juga lebih mudah untuk dianalisis secara matematis dan baik untuk mendeteksi error yang umum terjadi dikarenakan oleh noise pada transmission channel. CRC sendiri tidak didesain dengan tujuan kriptografik, karena CRC dapat direverse sehingga untuk alasan keamanan lebih dianjurkan untuk menggunakan SHA-2.
+
+\subsection{Integritas Data}
+\label{subsec:crcdataintegrity}
+
+Seperti yang sudah disebutkan sebelumnya, CRC didesain secara spesifik untuk keperluan error-checking, dimana CRC akan mendeteksi kesalahan dengan beban komputasi yang jauh lebih ringan dibandingkan dengan Cryptographic Hash Function. Maka dari itu, CRC tidak cocok untuk melindungi dari modifikasi data yang disengaja. Yang pertama, karena tidak ada autentikasi, \emph{attacker} dapat memodifikasi pesan dan menghitung ulang CRCnya tanpa terdeteksi. Ketika disimpan bersama dengan data, baik CRC maupun Cryptographic Hash Function tidak melindungi dari perubahan data yang disengaja. Aplikasi yang memerlukan proteksi dari serangan tersebut harus menggunakan mekanisme autentikasi kriptografik, seperti \emph{message authentication codes} (MAC) atau \emph{digital signatures}. Yang kedua, tidak seperti MD5 maupun SHA, CRC dapat dengan mudah direverse, yang membuat CRC tidak cocok untuk digunakan sebagai \emph{digital signatures} \citep{martin2006}. Yang ketiga, CRC memiliki hubungan yang mirip dengan fungsi linear \citep{poncho2016}. 
+
+\begin{equation}
+  \label{eq:crc1}
+  CRC(x\oplus y) = CRC(x) \oplus CRC(y) \oplus c
+\end{equation}
+
+Dimana \(c\) bergantung dari panjang \(x\) dan \(y\). Persamaan \ref{eq:crc1} juga bisa dituliskan seperti berikut, dimana \(x\), \(y\), dan \(z\) memiliki panjang yang sama.
+
+\begin{equation}
+  \label{eq:crc2}
+  CRC(x\oplus y \oplus z) = CRC(x) \oplus CRC(y) \oplus CRC(z)
+\end{equation}
+
+Maka, bahkan ketika CRC dienkripsi dengan \emph{stream cipher} yang menggunakan XOR sebagai operasi kombinasinya, baik pesan maupun CRC dapat dimanipulasi tanpa sepengetahuan dari \emph{encryption key}, ini merupakan salah satu \emph{design flaws} dari protokol Wired Equivalent Privacy (WEP) \citep{winget2003}.
+
+\lipsum[16-18]
+
+% Contoh input potongan kode dari file.
+\lstinputlisting[
+  language=Python,
+  caption={Program perhitungan bilangan prima.},
+  label={lst:bilanganprima}
+]{program/bilangan-prima.py}
+
+\lipsum[19-20]
